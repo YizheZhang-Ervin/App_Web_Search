@@ -1,4 +1,4 @@
-# EZAlgorithms
+# FinTech_Algorithms
 ## FrontEnd
 Vue  
   
@@ -6,9 +6,10 @@ Vue
 entrance:index.html  
   
 ## BackEnd
-Flask RESTful  
+Django RESTful  
   
 ### Run
 workon env_develop  
-cd Server  
-python -m flask run  
+cd server  
+python manage.py runserver  
+  

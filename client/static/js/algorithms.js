@@ -7,7 +7,7 @@ Vue.component('algorithms', {
   methods: {
     get: function (val) {
       this.pkg = val;
-      axios.get(`http://127.0.0.1:5000/api/${this.pkg}`)
+      axios.get(`http://127.0.0.1:8000/api/?pkg=${this.pkg}`)
         .then((response) => {
           if (response.data.error == "error") {
             console.log("bakend error");
@@ -20,8 +20,8 @@ Vue.component('algorithms', {
     },
     post: function (val) {
       this.pkg = val;
-      axios.post(`http://127.0.0.1:5000/api/${this.pkg}`, {
-        "params": JSON.stringify(this.pkg)
+      axios.post(`http://127.0.0.1:8000/api/`, {
+        "pkg": JSON.stringify(this.pkg)
       })
         .then((response) => {
           if (response.data.error == "error") {
