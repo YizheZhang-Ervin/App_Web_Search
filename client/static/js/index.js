@@ -4,7 +4,8 @@ var app = new Vue({
         return {
             homeShow: true,
             algShow: false,
-            toolShow: false
+            toolShow: false,
+            bondShow:false,
         }
     },
     mounted() {
@@ -18,16 +19,25 @@ var app = new Vue({
                 this.homeShow = true;
                 this.algShow = false;
                 this.toolShow = false;
+                this.bondShow = false;
             }
-            if (key == "tool") {
+            else if (key == "tool") {
                 this.homeShow = false;
                 this.algShow = false;
                 this.toolShow = true;
+                this.bondShow = false;
             }
-            if (key[0] == "2") {
+            else if (key == "bonds") {
+                this.homeShow = false;
+                this.algShow = false;
+                this.toolShow = false;
+                this.bondShow = true;
+            }
+            else if (key[0] == "2") {
                 this.homeShow = false;
                 this.algShow = true;
                 this.toolShow = false;
+                this.bondShow = false;
             }
         },
         checkVisibility: function () {

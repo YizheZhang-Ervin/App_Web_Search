@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from fintech.views import RestApi
+from fintech.views import RestApi,NSApi,NSSApi
 
 urlpatterns = [
-    path('api/', RestApi.as_view()),
+    path('api/NS/', NSApi.as_view()),
+    path('api/NSS/', NSSApi.as_view()),
     path('admin/', admin.site.urls),
 ]
