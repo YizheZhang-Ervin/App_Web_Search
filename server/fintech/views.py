@@ -5,6 +5,7 @@ from pathlib import Path
 import sys 
 sys.path.append("..") 
 from FinTechAlgs import Bonds_NSModel,Bonds_NSSModel
+from Tools import TranslateHandler
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -102,5 +103,23 @@ class NSSApi(View):
             tempBest,paras,x,y,y_real = Bonds_NSSModel.postOne(f"{BASE_DIR}/FinTechAlgs/DataSource/{dataSet}.xlsx",params,row)
             jsonObj = {"rsquare":tempBest,"paras":paras,"x":list(x),"y":list(y),"y_real":list(y_real)}
             return JsonResponse(jsonObj)
+        except Exception:
+            return JsonResponse({"error":"error"})
+
+class TranslateApi(View):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        if request.method.lower() in self.http_method_names:
+            handler = getattr(self, request.method.lower(), self.http_method_not_allowed)
+        else:
+            handler = self.http_method_not_allowed
+        return handler(request, *args, **kwargs)
+    def get(self,request):
+        try:
+            sentence = request.GET.get("sentence","")
+            fromlang = request.GET.get("fromlang","")
+            tolang = request.GET.get("tolang","")
+            translatedSentence = TranslateHandler.run(sentence,fromlang,tolang)
+            return JsonResponse({"result":translatedSentence})
         except Exception:
             return JsonResponse({"error":"error"})
