@@ -5,12 +5,12 @@ Vue.component('home', {
       notificationShow:true,
       reverse: true,
         activities: [{
-          content: 'Lecture 1',
+          content: 'Lecture 1: Basic Statistics',
           timestamp: '2021-01-23',
           size: 'large',
           color: '#0bbd87'
         }, {
-          content: 'Lecture 2',
+          content: 'Lecture 2: Basic Statistics',
           timestamp: '2021-01-30',
           size: 'large',
           color: '#0bbd87'

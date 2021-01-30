@@ -6,6 +6,8 @@ var app = new Vue({
             algShow: false,
             toolShow: false,
             bondShow:false,
+            codeShow:false,
+            codeNo:""
         }
     },
     mounted() {
@@ -20,24 +22,36 @@ var app = new Vue({
                 this.algShow = false;
                 this.toolShow = false;
                 this.bondShow = false;
+                this.codeShow = false;
             }
             else if (key == "tool") {
                 this.homeShow = false;
                 this.algShow = false;
                 this.toolShow = true;
                 this.bondShow = false;
+                this.codeShow = false;
             }
             else if (key == "bonds") {
                 this.homeShow = false;
                 this.algShow = false;
                 this.toolShow = false;
                 this.bondShow = true;
+                this.codeShow = false;
+            }
+            else if (key.substr(0,4) == "code") {
+                this.homeShow = false;
+                this.algShow = false;
+                this.toolShow = false;
+                this.bondShow = false;
+                this.codeShow = true;
+                this.codeNo = key;
             }
             else if (key[0] == "2") {
                 this.homeShow = false;
                 this.algShow = true;
                 this.toolShow = false;
                 this.bondShow = false;
+                this.codeShow = false;
             }
         },
         checkVisibility: function () {

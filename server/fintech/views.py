@@ -123,3 +123,30 @@ class TranslateApi(View):
             return JsonResponse({"result":translatedSentence})
         except Exception:
             return JsonResponse({"error":"error"})
+
+class CodeApi(View):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        if request.method.lower() in self.http_method_names:
+            handler = getattr(self, request.method.lower(), self.http_method_not_allowed)
+        else:
+            handler = self.http_method_not_allowed
+        return handler(request, *args, **kwargs)
+    def get(self,request):
+        # try:
+        pkg = request.GET.get("pkg","")
+        if pkg=="code1":
+            f1 = open("FinTechAlgs/CTA.py")
+            f2 = open("FinTechAlgs/CTA_Garch.py")
+            f3 = open("FinTechAlgs/CTA_KalmanFilter.py")
+            rst = f1.readlines()+f2.readlines()+f3.readlines()
+        elif pkg=="code2":
+            f1 = open("FinTechAlgs/Options_BlackScholes.py")
+            f2 = open("FinTechAlgs/Options_OptionPricing.py")
+            rst = f1.readlines()+f2.readlines()
+        elif pkg=="code3":
+            f1 = open("FinTechAlgs/Equity_FamaFrench.py")
+            rst = f1.readlines()
+        return JsonResponse({"result":rst})
+        # except Exception:
+        #     return JsonResponse({"error":"error"})
