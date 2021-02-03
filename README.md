@@ -1,14 +1,27 @@
-# FinTech_Algorithms
-## FrontEnd
-Vue  
+# FinTech_Algorithms  
+## Features
+Algorithms: CTA/Options/Equity/Bonds  
+Video Player with drag/drop  
+Recipe with Keyword Search  
+Monitor with browser parameters & camera  
+Geolocation with location & map  
   
-### Run
-entrance:index.html  
+## FrontEnd  
+Vue+ElementUI+Echarts+Axios    
+vue create xxPrj  
+npm install element-ui  
+npm install echarts  
+npm install axios  
   
 ## BackEnd
-Django RESTful  
+Django RESTful+Sqlite    
+pipreqs ./  
+pip install -r requirements.txt  
   
-### Run
+## Run
+cd client  
+npm install  
+npm run build  
 workon env_develop  
 cd server  
 python manage.py runserver  
