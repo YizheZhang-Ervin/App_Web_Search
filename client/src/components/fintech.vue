@@ -21,7 +21,7 @@ export default {
   mounted() {},
   methods: {
     get: function () {
-      axios.get(`http://127.0.0.1:8000/api/codes/?pkg=${this.codeNo2}`).then(
+      axios.get(`http://127.0.0.1:5000/api/codes/?pkg=${this.codeNo2}`).then(
         (response) => {
           if (response.data.error == "error") {
             console.log("bakend error");
