@@ -67,6 +67,11 @@
             </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
+        <!-- group -->
+        <el-menu-item index="1" @click="changeShow('group')">
+          <i class="el-icon-user"></i>
+          <span slot="title">Group</span>
+        </el-menu-item>
         <!-- collapse -->
         <el-menu-item index="4" @click="changeMenuCollapse">
           <i class="el-icon-s-fold"></i>
@@ -85,6 +90,7 @@
       <Geo v-if="geoShow"></Geo>
       <Fintech v-show="fintechShow" :code-no="codeNo"></Fintech>
       <Bonds v-if="bondShow"></Bonds>
+      <Group v-show="groupShow"></Group>
       <el-backtop></el-backtop>
     </main>
   </div>
@@ -97,6 +103,7 @@ import Monitor from "./monitor.vue";
 import Geo from "./geo.vue";
 import Fintech from "./fintech.vue";
 import Bonds from "./bonds.vue";
+import Group from "./group.vue";
 
 export default {
   name: "Home",
@@ -107,6 +114,7 @@ export default {
     Geo,
     Fintech,
     Bonds,
+    Group
   },
   data: function () {
     return {
@@ -117,6 +125,7 @@ export default {
       geoShow: false,
       fintechShow: false,
       bondShow: true,
+      groupShow:false,
       mouseX: 0,
       mouseY: 0,
       codeNo: "",
@@ -159,6 +168,7 @@ export default {
         this.fintechShow = false;
         this.geoShow = false;
         this.bondShow = false;
+        this.groupShow = false;
       } else if (index == "monitor") {
         this.videoShow = false;
         this.monitorShow = true;
@@ -166,6 +176,7 @@ export default {
         this.fintechShow = false;
         this.geoShow = false;
         this.bondShow = false;
+        this.groupShow = false;
       } else if (index == "recipe") {
         this.videoShow = false;
         this.monitorShow = false;
@@ -173,6 +184,7 @@ export default {
         this.fintechShow = false;
         this.geoShow = false;
         this.bondShow = false;
+        this.groupShow = false;
       } else if (index.substr(0,4) == "code") {
         this.videoShow = false;
         this.monitorShow = false;
@@ -181,6 +193,7 @@ export default {
         this.geoShow = false;
         this.bondShow = false;
         this.codeNo = index;
+        this.groupShow = false;
       } else if (index == "geo") {
         this.videoShow = false;
         this.monitorShow = false;
@@ -188,6 +201,7 @@ export default {
         this.fintechShow = false;
         this.geoShow = true;
         this.bondShow = false;
+        this.groupShow = false;
       } else if (index == "bonds") {
         this.videoShow = false;
         this.monitorShow = false;
@@ -195,6 +209,15 @@ export default {
         this.fintechShow = false;
         this.geoShow = false;
         this.bondShow = true;
+        this.groupShow = false;
+      }else if( index=="group"){
+        this.videoShow = false;
+        this.monitorShow = false;
+        this.recipeShow = false;
+        this.fintechShow = false;
+        this.geoShow = false;
+        this.bondShow = false;
+        this.groupShow = true;
       }
     },
     mouseMove(ev) {

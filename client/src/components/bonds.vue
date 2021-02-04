@@ -187,7 +187,7 @@ export default {
     getOne: function () {
       axios
         .get(
-          `http://127.0.0.1:8000/api/NS/?dataset=${this.getName(
+          `http://127.0.0.1:5000/api/NS/?dataset=${this.getName(
             this.dataSet
           )}&row=${this.rowNo}`
         )
@@ -224,7 +224,7 @@ export default {
     getAll: function () {
       axios
         .get(
-          `http://127.0.0.1:8000/api/NS/?dataset=${this.getName(
+          `http://127.0.0.1:5000/api/NS/?dataset=${this.getName(
             this.dataSet
           )}&row=-1`
         )
@@ -254,7 +254,7 @@ export default {
     },
     postOne: function () {
       axios
-        .post(`http://127.0.0.1:8000/api/NS/`, {
+        .post(`http://127.0.0.1:5000/api/NS/`, {
           parameters: JSON.stringify(
             Array(this.tau0, this.beta0, this.beta1, this.beta2)
           ),
@@ -294,7 +294,7 @@ export default {
     getNSSOne: function () {
       axios
         .get(
-          `http://127.0.0.1:8000/api/NSS/?dataset=${this.getName(
+          `http://127.0.0.1:5000/api/NSS/?dataset=${this.getName(
             this.dataSet
           )}&row=${this.rowNo}`
         )
@@ -330,7 +330,7 @@ export default {
     },
     postNSSOne: function () {
       axios
-        .post(`http://127.0.0.1:8000/api/NSS/`, {
+        .post(`http://127.0.0.1:5000/api/NSS/`, {
           parameters: JSON.stringify(
             Array(
               this.tau0,
