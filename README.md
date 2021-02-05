@@ -5,6 +5,7 @@ Video Player with drag/drop
 Recipe with Keyword Search  
 Monitor with browser parameters & camera  
 Geolocation with location & map  
+Group  
   
 ## FrontEnd  
 Vue+ElementUI+Echarts+Axios    
@@ -14,7 +15,7 @@ npm install echarts
 npm install axios  
   
 ## BackEnd
-Django RESTful+Sqlite    
+Flask RESTful    
 pipreqs ./  
 pip install -r requirements.txt  
   
@@ -24,5 +25,5 @@ npm install
 npm run build  
 workon env_develop  
 cd server  
-python manage.py runserver  
+python -m flask run    
   
