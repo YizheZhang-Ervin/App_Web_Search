@@ -1,11 +1,4 @@
 # FinTech_Algorithms  
-## Features
-Algorithms: CTA/Options/Equity/Bonds  
-Video Player with drag/drop  
-Recipe with Keyword Search  
-Monitor with browser parameters & camera  
-Geolocation with location & map  
-Group  
   
 ## FrontEnd  
 Vue+ElementUI+Echarts+Axios    
@@ -25,5 +18,5 @@ npm install
 npm run build  
 workon env_develop  
 cd server  
-python -m flask run    
+python -m flask run  
   
