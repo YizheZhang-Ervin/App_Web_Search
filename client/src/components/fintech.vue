@@ -1,71 +1,63 @@
 <template>
 	<section class="whole">
-		<!-- libs -->
-		<el-card class="w100 scroll-h">
-			<div slot="header">
-				<span>1.Libs</span>
-			</div>
-			<div v-for="o in libs" :key="o">
-				{{ o }}
-			</div>
-		</el-card>
-		<!-- data -->
-		<el-card class="w100 scroll-h">
-			<div slot="header">
-				<span>2.Stock Data</span>
-			</div>
-			<div v-for="(v, i) in stockData" :key="i">{{ i }}:{{ v }}</div>
-		</el-card>
-		<!-- bootstrap -->
-		<el-card class="w100 scroll-h">
-			<div slot="header">
-				<span>3.Bootstrap: confidence interval(5%-95%) of mu</span>
-			</div>
-			<div v-for="(v, i) in bootstrapMU" :key="i">{{ i }}:{{ v }}</div>
-		</el-card>
+		<div class="scrolled">
+			<!-- chart 1 -->
+			<el-card class="w100">
+				<div slot="header" class="flex">
+					<span>Chart 1</span>
+					<div class="atend">
+						<el-select v-model="col1" placeholder="Choose column 1" style="width:20%;" @change="getData">
+							<el-option v-for="item in cols" :key="item" :label="item" :value="item"> </el-option>
+						</el-select>
+						<el-select v-model="col2" placeholder="Choose column 2" style="width:20%;" @change="getData">
+							<el-option v-for="item in cols" :key="item" :label="item" :value="item"> </el-option>
+						</el-select>
+						<el-input style="width:20%;" @change="getData" placeholder="Type in stock name" v-model="stockname" clearable></el-input>
+					</div>
+				</div>
+				<div id="chart1" class="charts"></div>
+			</el-card>
+			<!-- chart 2 -->
+			<el-card class="w100">
+				<div slot="header">
+					<span>Chart 2</span>
+				</div>
+				<div id="chart2" class="charts"></div>
+			</el-card>
+		</div>
 	</section>
 </template>
 
 <script>
 const axios = require("axios");
+var echarts = require("echarts");
+
 export default {
 	name: "Fintech",
 	data() {
 		return {
-			libs: [
-				"numpy",
-				"pandas",
-				"math",
-				"random",
-				"matplotlib",
-				"scipy",
-				"pandas_datareader",
-				"datetime",
-				"seaborn",
-			],
-			stockData: {
-				Open: [1, 2, 3],
-				Close: [1, 2, 3],
-				High: [1, 2, 3],
-				Low: [1, 2, 3],
-				Volume: [1, 2, 3],
-				"Adj Close": [1, 2, 3],
+			chartData: {
+				x: [],
+				y: [],
+				y2: [],
 			},
-			bootstrapMU: {
-				min: 4,
-				max: 5,
-			},
+			stockname: "",
+			col1: "",
+			col2: "",
+			cols: ["High", "Low", "Open", "Close", "Adj Close", "Volume"],
 		};
 	},
 	mounted() {},
 	methods: {
-		getStockData() {
-			axios.get(`http://127.0.0.1:5000/api/stockdata`).then(
+		getData() {
+			axios.get(`http://127.0.0.1:5000/api/${this.stockname}?col1=${this.col1}&col2=${this.col2}`).then(
 				(response) => {
 					if (response.data.error == "error") {
 						console.log("bakend error");
 					} else {
-						this.algorithm = response.data.result;
+						this.chartData = response.data;
+						this.plotChart1();
+						this.plotChart2();
 					}
 				},
 				(err) => {
@@ -73,19 +65,75 @@ export default {
 				}
 			);
 		},
-		getBootStrapRst() {
-			axios.get(`http://127.0.0.1:5000/api/bootstrap`).then(
-				(response) => {
-					if (response.data.error == "error") {
-						console.log("bakend error");
-					} else {
-						this.algorithm = response.data.result;
-					}
+		plotChart1() {
+			let myChart = echarts.init(document.getElementById("chart1"));
+			let option = {
+				xAxis: {
+					name: "Axis-X",
+					type: "category",
+					data: this.chartData.x,
 				},
-				(err) => {
-					console.log("frontend error", err);
-				}
-			);
+				yAxis: {
+					name: "Axis-Y",
+					type: "value",
+				},
+				series: [
+					{
+						data: this.chartData.y,
+						type: "line",
+						smooth: true,
+					},
+					{
+						data: this.chartData.y2,
+						type: "line",
+						smooth: true,
+					},
+				],
+				dataZoom: [
+					{
+						type: "inside",
+					},
+				],
+				tooltip: {
+					trigger: "axis",
+				},
+			};
+			myChart.setOption(option);
+		},
+		plotChart2() {
+			let myChart = echarts.init(document.getElementById("chart2"));
+			let option = {
+				xAxis: {
+					name: "Axis-X",
+					type: "category",
+					data: this.chartData.x,
+				},
+				yAxis: {
+					name: "Axis-Y",
+					type: "value",
+				},
+				series: [
+					{
+						data: this.chartData.y,
+						type: "line",
+						smooth: true,
+					},
+					{
+						data: this.chartData.y2,
+						type: "line",
+						smooth: true,
+					},
+				],
+				dataZoom: [
+					{
+						type: "inside",
+					},
+				],
+				tooltip: {
+					trigger: "axis",
+				},
+			};
+			myChart.setOption(option);
 		},
 	},
 };
@@ -97,15 +145,31 @@ export default {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	height: 100%;
-	overflow-y: scroll;
+	height: 100vh;
+	width: 100%;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.atend {
+	display: flex;
+	justify-content: flex-end;
 }
 
 .w100 {
 	width: 100%;
 }
 
-.scroll-h {
-	overflow-x: scroll;
+.charts {
+	min-height: 50vh;
+}
+
+.scrolled {
+	overflow-y: scroll;
+	width: 100%;
 }
 </style>

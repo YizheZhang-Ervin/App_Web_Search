@@ -10,25 +10,25 @@
 			:collapse="menuCollapse"
 		>
 			<!-- home -->
-			<el-menu-item index="1" @click="changeShow('fintech')">
+			<el-menu-item index="1" @click="changeShow('charts')">
 				<i class="el-icon-s-home"></i>
 				<span slot="title">Home</span>
 			</el-menu-item>
 			<!-- fintech -->
 			<el-submenu index="2" collapse="false">
 				<template slot="title">
-					<i class="el-icon-s-marketing"></i>
-					<span>FinTech</span>
+					<i class="el-icon-monitor"></i>
+					<span>Terminal</span>
 				</template>
 				<el-menu-item-group>
-					<template slot="title">Algorithms</template>
-					<el-menu-item index="2-1" @click="changeShow('code1')">
+					<template slot="title">Terminal</template>
+					<el-menu-item index="2-1" @click="changeShow('python')">
 						<i class="el-icon-s-flag"></i>
-						<span slot="title">CTA</span>
+						<span slot="title">Python</span>
 					</el-menu-item>
-					<el-menu-item index="2-2" @click="changeShow('code2')">
+					<el-menu-item index="2-2" @click="changeShow('sql')">
 						<i class="el-icon-s-flag"></i>
-						<span slot="title">Options</span>
+						<span slot="title">SQL</span>
 					</el-menu-item>
 				</el-menu-item-group>
 			</el-submenu>
@@ -47,6 +47,7 @@
 			<!-- components -->
 			<Fintech v-show="fintechShow"></Fintech>
 			<Group v-show="groupShow"></Group>
+			<Coding v-show="codingShow"></Coding>
 			<el-backtop></el-backtop>
 		</main>
 	</div>
@@ -55,18 +56,21 @@
 <script>
 import Group from "./group.vue";
 import Fintech from "./fintech.vue";
+import Coding from './coding.vue';
 
 export default {
 	name: "Home",
 	components: {
 		Group,
 		Fintech,
+		Coding,
 	},
 	data: function() {
 		return {
 			menuCollapse: true,
 			groupShow: false,
 			fintechShow: true,
+			codingShow:false,
 			left:{height: this.getHeight()+ 'px'},
 			main:{width: (this.getWidth()-65)+ 'px',height: this.getHeight()+ 'px'}
 		};
@@ -103,9 +107,19 @@ export default {
 			if (index == "group") {
 				this.groupShow = true;
 				this.fintechShow = false;
-			} else if (index == "fintech") {
+				this.codingShow = false;
+			} else if (index == "charts") {
 				this.groupShow = false;
 				this.fintechShow = true;
+				this.codingShow = false;
+			} else if (index == "python") {
+				this.groupShow = false;
+				this.fintechShow = false;
+				this.codingShow = true;
+			} else if (index == "sql") {
+				this.groupShow = false;
+				this.fintechShow = false;
+				this.codingShow = true;
 			}
 		},
 	},
