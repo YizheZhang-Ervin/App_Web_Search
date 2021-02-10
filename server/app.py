@@ -1,6 +1,8 @@
 from flask import Flask, request, redirect, jsonify, render_template
 from flask_restful import Api,Resource,reqparse
 from flask_cors import CORS
+from pandas_datareader import DataReader
+from datetime import datetime
 
 # Initialize Flask
 app = Flask(__name__,static_folder='static',template_folder='static',static_url_path="")
@@ -25,9 +27,17 @@ def index():
 # RESTful API Route
 class jsonAPI(Resource):
     def get(self,key):
+        stockname = key
+        col1 = request.args.get("col1","")
+        col2 = request.args.get("col2","")
         try:
-            jsonObj = {"key":key}
-            return jsonify(jsonObj)
+            if key!="" and col1!="" and col2!="":
+                data = DataReader(stockname,"yahoo",datetime(2020,1,1),datetime(2021,2,5))
+                x = list(map(lambda x:str(x.date()),data.index))
+                y = list(map(float,data[col1].values))
+                y2 = list(map(float,data[col2].values))
+                jsonObj = {"x":x,"y":y,"y2":y2}
+                return jsonify(jsonObj)
         except Exception:
             return jsonify({"error":"error"})
     
@@ -42,4 +52,4 @@ class jsonAPI(Resource):
 api.add_resource(jsonAPI, '/api/<key>')
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
