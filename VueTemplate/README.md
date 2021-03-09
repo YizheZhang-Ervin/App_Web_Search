@@ -1,26 +1,3 @@
-# Ionic + Vue 
-## Install  
-npm install -g @ionic/cli@latest native-run cordova-res
-ionic start xxApp tabs --type vue --capacitor  
-npm install @ionic/pwa-elements  
-cd xxApp > ionic serve  
-
-## Build  
-ionic integrations enable capacitor
-ionic build  
-ionic cap add ios  
-ionic cap add android  
-ionic cap open ios  
-ionic cap open android  
-ionic cap copy  
-ionic cap sync  
-  
-## Live Reload  
-ionic cap run ios -l --external  
-ionic cap run android -l --external
-  
-_____
-  
 # TMPL_Vue
 
 一.Vue基础  
@@ -91,4 +68,4 @@ axios.post().then()
 歌曲封面:点击播放von封面获取axios封面设置vbind  
 歌曲评论:点击播放von评论获取axios评论渲染vfor  
 播放动画:音乐播放von音乐暂停von操纵类名vbind  
-mv播放:图标显示vif地址获取axios遮罩层vshow&von地址设置vbind    
+mv播放:图标显示vif地址获取axios遮罩层vshow&von地址设置vbind  
