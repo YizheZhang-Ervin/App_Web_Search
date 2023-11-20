@@ -107,7 +107,7 @@ let websshA = {
                     wsTime = null
                 }
                 this.wsTime = window.setTimeout(() => {
-                    this.websocket()
+                    // pass
                 }, 3000)
             };
         },
