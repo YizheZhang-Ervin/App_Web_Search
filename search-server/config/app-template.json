@@ -1,0 +1,31 @@
+{
+    "address": "0.0.0.0",
+    "port": "3000",
+    "uploadPath": "/home/share/upload/",
+    "useHttps": "yes",
+    "serverKeyPath": "./keys/server.key",
+    "serverCrtPath": "./keys/server.crt",
+    "etcd": "127.0.0.1:2379",
+    "mongo": "mongodb://127.0.0.1:27017/wao-db",
+    "es": "http://127.0.0.1:9200",
+    "redis": "redis://root:root@127.0.0.1:6379",
+    "mysql": {
+        "host": "127.0.0.1",
+        "user": "root",
+        "password": "root",
+        "database": "wao-db",
+        "port": "3306"
+    },
+    "minio": {
+        "endPoint": "127.0.0.1",
+        "port": 9000,
+        "useSSL": false,
+        "accessKey": "root",
+        "secretKey": "root"
+    },
+    "neo4j": {
+        "url": "bolt://localhost:7687",
+        "username": "root",
+        "password": "root"
+    }
+}

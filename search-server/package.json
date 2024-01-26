@@ -1,0 +1,25 @@
+{
+  "name": "search-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "ervin",
+  "license": "MIT",
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.11.0",
+    "ejs": "^3.1.9",
+    "etcd3": "^1.1.2",
+    "express": "^4.18.2",
+    "minio": "^7.1.3",
+    "mongoose": "^8.1.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.9.0",
+    "neo4j-driver": "^5.16.0",
+    "node-schedule": "^2.1.1",
+    "redis": "^4.6.12"
+  }
+}
