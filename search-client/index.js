@@ -1,35 +1,29 @@
 import MyComponent from "./components/MyComponent.js"
-
 const { createApp } = Vue
-
-const axiosInstance = axios.create()
 
 const app = createApp({
     data() {
         return {
-            message: 'Hello Vue!',
-            displayComponent: false
+            searchInput: undefined,
+            openDrawer: false
         }
     },
     mounted() {
     },
     methods: {
-        trigger() {
-            this.get()
+        handleClose() {
+            this.openDrawer = false
         },
-        get() {
-            axiosInstance.get("/api/")
-                .then((response) => {
-                    console.log(response);
-                }).catch((err) => {
-                    console.log(err);
-                }).finally(() => {
-                    this.displayComponent = !this.displayComponent
-                    this.message = `call sub component, current display is ${this.displayComponent}`
-                })
+        doSearch() {
+            this.openDrawer = true
         },
     }
 })
+
+// 加载组件 & 初始化
 app.component("comp", MyComponent)
 app.use(ElementPlus);
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    app.component(key, component)
+}
 app.mount('#app')

@@ -1,3 +1,46 @@
 * {
     margin: 0;
 }
+
+#app {
+    width: 100vw;
+    background: linear-gradient(135deg, #c850c0, #4158d0);
+    /* background: linear-gradient(135deg, #a1c4fd, #c2e9fb); */
+    /* background: linear-gradient(135deg, #292a3a, #536976); */
+    /* background: linear-gradient(135deg, #001f3f, #0088a9, #00c9a7, #92d5c6, #ebf5ee); */
+    /* background: linear-gradient(135deg, #c7e9fb, #a6defa, #80d4f9, #5bc9f8, #35bef7); */
+}
+
+.title {
+    text-align: center;
+    font-size: xxx-large;
+    color: white;
+}
+
+.wao-header {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 6vh;
+    line-height: 6vh;
+    text-align: center;
+    color: white;
+    font-size: x-large;
+}
+
+.wao-main {
+    height: 88vh;
+}
+
+.wao-footer {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 6vh;
+    line-height: 6vh;
+    text-align: center;
+    color: white;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+}

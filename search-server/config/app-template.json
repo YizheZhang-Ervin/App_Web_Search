@@ -24,8 +24,9 @@
         "secretKey": "root"
     },
     "neo4j": {
-        "url": "bolt://localhost:7687",
-        "username": "root",
-        "password": "root"
+        "url": "bolt://127.0.0.1:7687",
+        "username": "neo4j",
+        "password": "neo4j001",
+        "db": "neo4j"
     }
 }

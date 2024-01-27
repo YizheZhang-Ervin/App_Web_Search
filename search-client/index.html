@@ -11,9 +11,33 @@
 
     <body>
         <div id="app">
-            <p>{{message}}</p>
-            <button @click="trigger">Display</button>
-            <comp :msg="displayComponent" />
+            <el-container>
+                <el-header class="wao-header">WaOGroup Project</el-header>
+                <el-main class="wao-main">
+                    <div class="flex-center">
+                        <el-row align="middle" justify="center">
+                            <el-col :span="12" class="title">
+                                WaO Search
+                            </el-col>
+                        </el-row>
+                        <br />
+                        <el-row align="middle" justify="center">
+                            <el-col :span="12">
+                                <el-input v-model="searchInput" placeholder="Please Input Keywords···">
+                                    <template #append>
+                                        <el-button icon="Search" @click="doSearch" />
+                                    </template>
+                                </el-input>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </el-main>
+                <el-footer class="wao-footer">WaOGroup@2024</el-footer>
+            </el-container>
+            <el-drawer v-model="openDrawer" size="90%" :open-delay="0" title="Search Result" direction="btt"
+                :before-close="handleClose">
+                <comp :msg="searchInput" :trigger="openDrawer" />
+            </el-drawer>
         </div>
         <!-- vue -->
         <script src="./lib/vue.global.js"></script>
@@ -21,6 +45,7 @@
         <script src="./lib/axios.min.js"></script>
         <!-- element ui -->
         <script src="./lib/element-plus.js"></script>
+        <script src="./lib/icons-vue.js"></script>
         <!-- app -->
         <script src="./index.js" type="module" async></script>
     </body>
