@@ -1,7 +1,8 @@
 const { SearchOfNeo4j } = require("../middleware/neo4j.js")
+const { HGetOfRedis } = require("../middleware/redis.js")
 const { MakeResponse } = require("../utils/goResponse.js")
 
-let Search = async (req, res) => {
+let SearchByNeo4j = async (req, res) => {
     // SystemObj:{title,content,link}
     let queryStr = "MATCH (s:SystemObj {title: $title}) RETURN s"
     let paramJson = { title: req.body["keyword"] }
@@ -14,6 +15,16 @@ let Search = async (req, res) => {
     })
 }
 
+let SearchByRedis = async (req, res) => {
+    let keyword = req.body["keyword"]
+    let result = await HGetOfRedis(keyword)
+    if (result) {
+        MakeResponse(res, true, result, "查询成功")
+    } else {
+        MakeResponse(res, false, null, "查询失败")
+    }
+}
+
 module.exports = {
-    Search
+    SearchByNeo4j, SearchByRedis
 }

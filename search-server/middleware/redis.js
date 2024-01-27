@@ -1,11 +1,11 @@
-import { createClient } from 'redis';
+let { createClient } = require('redis');
 let config = require("../config/app.json")
 let client = undefined
 
 let openOfRedisConnection = async () => {
     let conf = {
         url: config["redis"] || 'redis://root:root@127.0.0.1:6379'
-        // username: 'root',
+        // username: 'default',
         // password: 'root',
         // socket: {
         //     host: '127.0.0.1',

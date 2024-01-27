@@ -1,6 +1,6 @@
 let { Upload } = require("../handler/uploadHandler.js")
 let { Login, Logout } = require("../handler/loginHandler.js")
-let { Search } = require("../handler/searchHandler.js")
+let { SearchByNeo4j, SearchByRedis } = require("../handler/searchHandler.js")
 
 let registerRoute = (app, upload) => {
     // main page
@@ -11,7 +11,8 @@ let registerRoute = (app, upload) => {
     app.post("/upload", upload.single("file"), Upload)
 
     // API: search api
-    app.post("/search", Search)
+    app.post("/search", SearchByNeo4j)
+    app.post("/search/redis", SearchByRedis)
 
     // API: login
     app.post("/login", Login)
